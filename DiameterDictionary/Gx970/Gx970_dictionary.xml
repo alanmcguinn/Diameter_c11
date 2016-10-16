@@ -1,0 +1,1392 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dictionary SYSTEM "diameterdictionary.dtd">
+<dictionary protocol="0">
+  <base>
+    <!-- ***************** DIAMETER BASE PROTOCOL AVPS ************** -->
+    <avp name="AVP" code="0"> 
+      <type type-name="Any"/>
+    </avp>
+    <avp name="Filter-Id" code="11" mandatory="must" protected="may" may-encrypt="yes">
+      <type type-name="UTF8String"/>
+    </avp>
+    <avp name="Acct-Application-Id" code="259" mandatory="must" protected="mustnot" may-encrypt="no">
+      <type type-name="Unsigned32"/>
+    </avp>
+    <avp name="Auth-Application-Id" code="258" mandatory="must" protected="mustnot" may-encrypt="no">
+      <type type-name="Unsigned32"/>
+    </avp>
+    <avp name="Destination-Host" code="293" mandatory="must" protected="mustnot" may-encrypt="no">
+      <type type-name="DiameterIdentity"/>
+    </avp>
+    <avp name="Destination-Realm" code="283" mandatory="must" protected="mustnot" may-encrypt="no">
+      <type type-name="DiameterIdentity"/>
+    </avp>
+    <avp name="Disconnect-Cause" code="273" mandatory="must" protected="mustnot" may-encrypt="no">
+      <type type-name="Enumerated"/>
+        <enum name="REBOOTING" code="0"/>
+        <enum name="BUSY" code="1"/>
+        <enum name="DO_NOT_WANT_TO_TALK_TO_YOU" code="2"/>
+    </avp>
+    <avp name="Error-Message" code="281" mandatory="mustnot" protected="mustnot" may-encrypt="no">
+      <type type-name="UTF8String"/>
+    </avp>
+    <avp name="Error-Reporting-Host" code="294" mandatory="must" protected="mustnot" may-encrypt="no">
+      <type type-name="DiameterIdentity"/>
+    </avp>
+    <avp name="Firmware-Revision" code="267" mandatory="mustnot" protected="mustnot" may-encrypt="no">
+      <type type-name="Unsigned32"/>
+    </avp>
+    <avp name="Host-IP-Address" code="257" mandatory="must" protected="mustnot" may-encrypt="no">
+      <type type-name="Address"/>
+    </avp>
+    <avp name="Origin-Host" code="264" mandatory="must" may-encrypt="no" protected="mustnot">
+      <type type-name="DiameterIdentity"/>
+    </avp>
+    <avp name="Origin-Realm" code="296" mandatory="must" may-encrypt="no" protected="mustnot">
+      <type type-name="DiameterIdentity"/>
+    </avp>
+    <avp name="Origin-State-Id" code="278" mandatory="must" protected="mustnot">
+      <type type-name="Unsigned32"/>
+    </avp>
+    <avp name="Product-Name" code="269" mandatory="mustnot" may-encrypt="no" protected="mustnot">
+      <type type-name="UTF8String"/>
+    </avp>
+    <avp name="Inband-Security-Id" code="299" mandatory="must" may-encrypt="no" protected="may">
+      <type type-name="Unsigned32"/>
+    </avp>
+    <avp name="Proxy-Host" code="280" mandatory="must" may-encrypt="no" protected="mustnot">
+      <type type-name="DiameterIdentity"/>
+    </avp>
+    <avp name="Proxy-State" code="33" mandatory="must" may-encrypt="no" protected="mustnot">
+      <type type-name="OctetString"/>
+    </avp>
+    <avp name="Proxy-Info" code="284" mandatory="must" may-encrypt="no" protected="mustnot">
+      <grouped>
+        <required>
+          <avprule name="Proxy-Host" maximum="1" minimum="1"/>
+          <avprule name="Proxy-State" maximum="1" minimum="1"/>
+        </required>
+        <optional>
+          <avprule name="AVP"/>
+        </optional>
+      </grouped>
+    </avp>
+    <avp name="Result-Code" code="268" mandatory="must" may-encrypt="no" protected="mustnot">
+      <type type-name="Unsigned32"/>
+    </avp>
+    <avp name="Route-Record" code="282" mandatory="must" may-encrypt="no" protected="mustnot">
+      <type type-name="DiameterIdentity"/>
+    </avp>
+    <avp name="Session-Id" code="263" mandatory="must" protected="mustnot">
+      <type type-name="UTF8String"/>
+    </avp>
+    <avp name="Supported-Vendor-Id" code="265" mandatory="must" may-encrypt="no" protected="mustnot">
+      <type type-name="Unsigned32"/>
+    </avp>
+    <avp name="User-Name" code="1">
+      <type type-name="UTF8String"/>
+    </avp>
+    <avp name="Vendor-Id" code="266" mandatory="must" may-encrypt="no" protected="mustnot">
+      <type type-name="Unsigned32"/>
+    </avp>
+    <avp name="Vendor-Specific-Application-Id" code="260" mandatory="must" may-encrypt="no" protected="mustnot">
+      <grouped>
+        <required>
+          <avprule name="Vendor-Id" minimum="1"/>
+        </required>
+        <optional>
+          <avprule name="Auth-Application-Id" maximum="1"/>
+          <avprule name="Acct-Application-Id" maximum="1"/>
+        </optional>
+      </grouped>
+    </avp>
+    <avp name="Re-Auth-Request-Type" code="285" mandatory="must" may-encrypt="no" protected="mustnot">
+      <type type-name="Enumerated"/>
+        <enum name="AUTHORIZE_ONLY" code="0"/>
+        <enum name="AUTHORIZE_AUTHENTICATE" code="1"/>
+    </avp>
+    <avp name="Failed-AVP" code="279">
+      <grouped>
+        <optional>
+          <avprule name="AVP" minimum="1"/>
+        </optional>
+      </grouped>
+    </avp>
+    <avp name="Event-Timestamp" code="55" mandatory="must" may-encrypt="no" protected="mustnot">
+      <type type-name="Unsigned32"/>
+    </avp>
+    <avp name="Termination-Cause" code="295" mandatory="must" may-encrypt="no">
+      <type type-name="Enumerated"/>
+        <enum name="DIAMETER_LOGOUT" code="1"/>
+        <enum name="DIAMETER_SERVICE_NOT_PROVIDED" code="2"/>
+        <enum name="DIAMETER_BAD_ANSWER" code="3"/>
+        <enum name="DIAMETER_ADMINISTRATIVE" code="4"/>
+        <enum name="DIAMETER_LINK_BROKEN" code="5"/>
+        <enum name="DIAMETER_AUTH_EXPIRED" code="6"/>
+        <enum name="DIAMETER_USER_MOVED" code="7"/>
+        <enum name="DIAMETER_SESSION_TIMEOUT" code="8"/>
+    </avp>
+    <avp name="Redirect-Host" code="292" mandatory="must" may-encrypt="no" protected="mustnot">
+      <type type-name="DiameterIdentity"/> 
+    </avp>
+    <avp name="Redirect-Host-Usage" code="261" mandatory="must" may-encrypt="no" protected="mustnot">
+      <type type-name="Enumerated"/> 
+        <enum name="DONT_CACHE" code="0"/> 
+        <enum name="ALL_SESSION" code="1"/> 
+        <enum name="ALL_REALM" code="2"/> 
+        <enum name="REALM_AND_APPLICATION" code="3"/> 
+        <enum name="ALL_APPLICATION" code="4"/> 
+        <enum name="ALL_HOST" code="5"/> 
+        <enum name="ALL_USER" code="6"/> 
+    </avp>
+    <avp name="Redirect-Max-Cache-Time" code="262" mandatory="must" may-encrypt="no" protected="mustnot">
+      <type type-name="Unsigned32"/> 
+    </avp>
+  <!-- ************** END DIAMETER BASE PROTOCOL AVPS ************* -->
+  </base>
+ <!-- vendorid="10415" *********** GX ***********-->
+  <application id="16777238" type="auth" eventprefix="GX" name="Gx970" uri="" lib="share/DiameterDictionaries/ccsdiameterapplication">
+    <command name="Gx970-Credit-Control" code="272" pbit="1">
+      <requestrules>
+        <fixed>
+          <avprule name="Session-Id" maximum="1" minimum="1"/>
+        </fixed>
+        <required>
+          <avprule name="Auth-Application-Id" maximum="1" minimum="1"/>
+          <avprule name="Origin-Host" maximum="1" minimum="1"/>
+          <avprule name="Origin-Realm" maximum="1" minimum="1"/>
+          <avprule name="Destination-Realm" maximum="1" minimum="1"/>
+          <avprule name="CC-Request-Type" maximum="1" minimum="1"/>
+          <avprule name="CC-Request-Number" maximum="1" minimum="1"/>
+        </required>
+        <optional>
+          <avprule name="Destination-Host" maximum="1"/>
+          <avprule name="Origin-State-Id" maximum="1"/>
+          <avprule name="Subscription-Id"/>
+          <avprule name="Supported-Features"/>
+          <avprule name="Gx970-Network-Request-Support" maximum="1"/>
+          <avprule name="Gx970-Packet-Filter-Information"/>
+          <avprule name="Gx970-Packet-Filter-Operation" maximum="1"/>
+          <avprule name="Gx970-Bearer-Identifier" maximum="1"/>
+          <avprule name="Gx970-Bearer-Operation" maximum="1"/>
+          <avprule name="Gx970-Framed-IP-Address" maximum="1"/> 
+          <avprule name="Gx970-Framed-IPv6-Prefix" maximum="1"/> 
+          <avprule name="Gx970-IP-CAN-Type" maximum="1"/>
+          <avprule name="Gx970-3GPP-RAT-Type" maximum="1"/> 
+          <avprule name="Gx970-RAT-Type" maximum="1"/>
+          <avprule name="Termination-Cause" maximum="1"/>
+          <avprule name="User-Equipment-Info" maximum="1"/>
+          <avprule name="Gx970-QoS-Information" maximum="1"/>
+          <avprule name="Gx970-QoS-Negotiation" maximum="1"/>
+          <avprule name="Gx970-QoS-Upgrade" maximum="1"/>
+          <avprule name="Gx970-Default-EPS-Bearer-QoS" maximum="1"/>
+          <avprule name="Gx970-AN-GW-Address" maximum="2"/>
+          <avprule name="Gx970-3GPP-SGSN-MCC-MNC" maximum="1"/>
+          <avprule name="Gx970-3GPP-SGSN-Address" maximum="1"/>
+          <avprule name="Gx970-3GPP-SGSN-IPv6-Address" maximum="1"/>
+          <avprule name="Gx970-RAI" maximum="1"/>
+          <avprule name="Gx970-3GPP-User-Location-Info" maximum="1"/>
+          <avprule name="Gx970-3GPP-MS-TimeZone" maximum="1"/>
+          <avprule name="Called-Station-Id" maximum="1"/>
+          <avprule name="Gx970-PDN-Connection-Id" maximum="1"/>
+          <avprule name="Gx970-Bearer-Usage" maximum="1"/>
+          <avprule name="Gx970-Online" maximum="1"/>
+          <avprule name="Gx970-Offline" maximum="1"/>
+          <avprule name="Gx970-TFT-Packet-Filter-Information"/>
+          <avprule name="Gx970-Charging-Rule-Report"/>
+          <avprule name="Gx970-Event-Trigger"/>
+          <avprule name="Gx970-Event-Report-Indication" maximum="1"/>
+          <avprule name="Gx970-Access-Network-Charging-Address" maximum="1"/>
+          <avprule name="Gx970-Access-Network-Charging-Identifier-Gx"/>
+          <avprule name="Gx970-CoA-Information"/>
+          <avprule name="Gx970-Usage-Monitoring-Information"/>
+          <avprule name="Proxy-Info"/>
+          <avprule name="Route-Record"/>
+          <avprule name="AVP"/>
+          <avprule name="Openet-Fe-Cookie" maximum="1"/>
+        </optional>
+      </requestrules>
+      <answerrules>
+        <fixed>
+          <avprule name="Session-Id" maximum="1" minimum="1"/>
+        </fixed>
+        <required>
+          <avprule name="Auth-Application-Id" maximum="1" minimum="1"/>
+          <avprule name="Origin-Host" maximum="1" minimum="1"/>
+          <avprule name="Origin-Realm" maximum="1" minimum="1"/>
+          <avprule name="CC-Request-Type" maximum="1" minimum="1"/>
+          <avprule name="CC-Request-Number" maximum="1" minimum="1"/>
+        </required>
+        <optional>
+          <avprule name="Result-Code" maximum="1"/>
+          <avprule name="Gx970-Experimental-Result" maximum="1"/>
+          <avprule name="Supported-Features"/>
+          <avprule name="Gx970-Bearer-Control-Mode" maximum="1"/>
+          <avprule name="Gx970-Event-Trigger"/>
+          <avprule name="Origin-State-Id" maximum="1"/>
+          <avprule name="Redirect-Host"/>
+          <avprule name="Redirect-Host-Usage" maximum="1"/>
+          <avprule name="Redirect-Max-Cache-Time" maximum="1"/>
+          <avprule name="Gx970-Charging-Rule-Remove"/>
+          <avprule name="Gx970-Charging-Rule-Install"/>
+          <avprule name="Gx970-Charging-Information" maximum="1"/>
+          <avprule name="Gx970-Online" maximum="1"/>
+          <avprule name="Gx970-Offline" maximum="1"/>
+          <avprule name="Gx970-QoS-Information"/>
+          <avprule name="Gx970-Revalidation-Time" maximum="1"/>
+          <avprule name="Gx970-Default-EPS-Bearer-QoS" maximum="1"/>
+          <avprule name="Gx970-Bearer-Usage" maximum="1"/>
+          <avprule name="Gx970-3GPP-User-Location-Info" maximum="1"/>
+          <avprule name="Gx970-Usage-Monitoring-Information"/>
+          <avprule name="Gx970-CSG-Information-Reporting"/>
+          <avprule name="Gx970-User-CSG-Information" maximum="1"/>
+          <avprule name="Error-Message" maximum="1"/>
+          <avprule name="Error-Reporting-Host" maximum="1"/>
+          <avprule name="Failed-AVP"/>
+          <avprule name="Proxy-Info"/>
+          <avprule name="Route-Record"/>
+          <avprule name="AVP"/>
+          <avprule name="Openet-Fe-Cookie" maximum="1"/>
+        </optional>
+      </answerrules>
+    </command>
+    <command name="Gx970-Re-Auth" code="258" pbit="1">
+      <requestrules>
+        <fixed>
+          <avprule name="Session-Id" maximum="1" minimum="1"/>
+        </fixed>
+        <required>
+          <avprule name="Auth-Application-Id" maximum="1" minimum="1"/>
+          <avprule name="Origin-Host" maximum="1" minimum="1"/>
+          <avprule name="Origin-Realm" maximum="1" minimum="1"/>
+          <avprule name="Destination-Realm" maximum="1" minimum="1"/>
+          <avprule name="Destination-Host" maximum="1" minimum="1"/>
+          <avprule name="Re-Auth-Request-Type" maximum="1" minimum="1"/>
+        </required>
+        <optional>
+         <avprule name="Gx970-Session-Release-Cause" maximum="1"/>
+         <avprule name="Origin-State-Id" maximum="1"/>
+         <avprule name="Gx970-Event-Trigger"/>
+         <avprule name="Gx970-Event-Report-Indication" maximum="1"/>
+         <avprule name="Gx970-Charging-Rule-Remove"/>
+         <avprule name="Gx970-Charging-Rule-Install"/>
+         <avprule name="Gx970-Default-EPS-Bearer-QoS" maximum="1"/> 
+         <avprule name="Gx970-QoS-Information"/>
+         <avprule name="Gx970-Revalidation-Time" maximum="1"/>
+         <avprule name="Gx970-Usage-Monitoring-Information"/>
+         <avprule name="Proxy-Info"/>
+         <avprule name="Route-Record"/>
+         <avprule name="AVP"/>
+          <avprule name="Openet-Fe-Cookie" maximum="1"/>
+        </optional>
+      </requestrules>
+      <answerrules>
+        <fixed>
+          <avprule name="Session-Id" maximum="1" minimum="1"/>
+        </fixed>
+        <required>
+          <avprule name="Origin-Host" maximum="1" minimum="1"/>
+          <avprule name="Origin-Realm" maximum="1" minimum="1"/>
+        </required>
+        <optional>
+          <avprule name="Result-Code" maximum="1"/>
+          <avprule name="Gx970-Experimental-Result" maximum="1"/>
+          <avprule name="Origin-State-Id" maximum="1"/>
+          <avprule name="Gx970-IP-CAN-Type" maximum="1"/>
+          <avprule name="Gx970-RAT-Type" maximum="1"/>
+          <avprule name="Gx970-AN-GW-Address" maximum="2"/>
+          <avprule name="Gx970-3GPP-SGSN-MCC-MNC" maximum="1"/>
+          <avprule name="Gx970-3GPP-SGSN-Address" maximum="1"/>
+          <avprule name="Gx970-3GPP-SGSN-IPv6-Address" maximum="1"/>
+          <avprule name="Gx970-RAI" maximum="1"/>
+          <avprule name="Gx970-3GPP-User-Location-Info" maximum="1"/>
+          <avprule name="Gx970-3GPP-MS-TimeZone" maximum="1"/>
+          <avprule name="Gx970-Charging-Rule-Report"/>
+          <avprule name="Error-Message" maximum="1"/>
+          <avprule name="Error-Reporting-Host" maximum="1"/>
+          <avprule name="Failed-AVP"/>
+          <avprule name="Proxy-Info"/>
+          <avprule name="AVP"/>
+          <avprule name="Openet-Fe-Cookie" maximum="1"/>
+        </optional>
+      </answerrules>
+    </command>
+    <command name="Abort-Session" code="274" pbit="1">
+      <requestrules>
+        <fixed>
+          <avprule name="Session-Id" maximum="1" minimum="1"/>
+        </fixed>
+        <required>
+          <avprule name="Origin-Host" maximum="1" minimum="1"/>
+          <avprule name="Origin-Realm" maximum="1" minimum="1"/>
+          <avprule name="Destination-Host" maximum="1" minimum="1"/>
+          <avprule name="Destination-Realm" maximum="1" minimum="1"/>
+          <avprule name="Auth-Application-Id" maximum="1" minimum="1"/>
+        </required>
+        <optional>
+          <avprule name="User-Name" maximum="1"/>
+          <avprule name="Origin-State-Id" maximum="1"/>
+          <avprule name="Proxy-Info"/>
+          <avprule name="Route-Record"/>
+          <avprule name="AVP"/>
+          <avprule name="Openet-Fe-Cookie" maximum="1"/>
+        </optional>
+      </requestrules>
+      <answerrules>
+        <fixed>
+          <avprule name="Session-Id" maximum="1" minimum="1"/>
+        </fixed>
+        <required>
+          <avprule name="Result-Code" maximum="1" minimum="1"/>
+          <avprule name="Origin-Host" maximum="1" minimum="1"/>
+          <avprule name="Origin-Realm" maximum="1" minimum="1"/>
+        </required>
+        <optional>
+          <avprule name="User-Name" maximum="1"/>
+          <avprule name="Origin-State-Id" maximum="1"/>
+          <avprule name="Error-Message" maximum="1"/>
+          <avprule name="Error-Reporting-Host" maximum="1"/>
+          <avprule name="Failed-AVP"/>
+          <avprule name="Redirect-Host"/>
+          <avprule name="Redirect-Host-Usage" maximum="1"/>
+          <avprule name="Redirect-Max-Cache-Time" maximum="1"/>
+          <avprule name="Proxy-Info"/>
+          <avprule name="AVP"/>
+          <avprule name="Openet-Fe-Cookie" maximum="1"/>
+        </optional>
+      </answerrules>
+    </command>
+    
+    <!-- ***************** DIAMETER CREDIT CONTROL APPLICATION AVPS ************** -->
+    <avp name="Openet-Fe-Cookie" code="21" mandatory="shouldnot" may-encrypt="no" protected="may" vendor-id="7898">
+      <type type-name="OctetString"/>
+    </avp>
+    <avp name="Gx970-3GPP-SGSN-Address" code="6" mandatory="mustnot" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="OctetString"/>
+    </avp>
+    <avp name="Gx970-Framed-IP-Address" code="8" mandatory="must" may-encrypt="yes" protected="may">
+      <type type-name="OctetString"/>
+    </avp>
+    <avp name="Gx970-3GPP-NSAPI" code="10" mandatory="mustnot" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="UTF8String"/>
+    </avp>
+    <avp name="Gx970-3GPP-SGSN-IPv6-Address" code="15" mandatory="mustnot" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="UTF8String"/>
+    </avp>
+    <avp name="Gx970-3GPP-SGSN-MCC-MNC" code="18" mandatory="mustnot" may-encrypt="yes" protected="may" vendor-id="10415">  
+      <type type-name="UTF8String"/>
+    </avp>
+    <avp name="Gx970-3GPP-RAT-Type" code="21" mandatory="mustnot" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="OctetString"/>
+    </avp>
+    <avp name="Gx970-3GPP-User-Location-Info" code="22" mandatory="mustnot" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="OctetString"/>
+    </avp>
+    <avp name="Gx970-3GPP-MS-TimeZone" code="23" mandatory="must" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="OctetString"/>
+    </avp>
+    <avp name="Called-Station-Id" code="30" mandatory="must" may-encrypt="yes" protected="may">
+      <type type-name="UTF8String"/>
+    </avp>
+    <avp name="Gx970-Framed-IPv6-Prefix" code="97" mandatory="must" may-encrypt="yes" protected="may">
+      <type type-name="OctetString"/>
+    </avp>
+    <avp name="Quota-Consumption-Time" code="257" mandatory="must" may-encrypt="no" vendor-id="10415">
+      <type type-name="Unsigned32"/>
+    </avp>
+    <avp name="Quota-Holding-Time" code="258" mandatory="must" may-encrypt="no" vendor-id="10415">
+      <type type-name="Unsigned32"/>
+    </avp>
+    <avp name="Time-Quota-Threshold" code="259" mandatory="must" may-encrypt="no" vendor-id="10415">
+      <type type-name="Unsigned32"/>
+    </avp>
+    <avp name="Volume-Quota-Threshold" code="268" mandatory="must" may-encrypt="no" vendor-id="10415">
+      <type type-name="Unsigned32"/>
+    </avp>
+    <avp name="Reporting-Reason" code="261" mandatory="must" may-encrypt="no" vendor-id="10415">
+      <type type-name="Enumerated"/>
+        <enum name="THRESHOLD" code="0"/>
+        <enum name="QHT" code="1"/>
+        <enum name="FINAL" code="2"/>
+        <enum name="QUOTA_EXHAUSTED" code="3"/>
+        <enum name="VALIDITY_TIME" code="4"/>
+        <enum name="OTHER_QUOTA_TYPE" code="5"/>
+        <enum name="RATING_CONDITION_CHANGE" code="6"/>
+        <enum name="FORCED_REAUTHORISATION" code="7"/>
+    </avp>
+    <avp name="Time-Of-First-Usage" code="263" mandatory="must" may-encrypt="no" vendor-id="10415">
+      <type type-name="Unsigned32"/>
+    </avp>
+    <avp name="Time-Of-Last-Usage" code="264" mandatory="must" may-encrypt="no" vendor-id="10415">
+      <type type-name="Unsigned32"/>
+    </avp>
+    <avp name="Trigger" code="265" mandatory="must" may-encrypt="no" vendor-id="10415">
+      <grouped>
+        <required>
+          <avprule name="Trigger-Type" minimum="1"/>
+        </required>
+      </grouped>
+    </avp>
+    <avp name="Trigger-Type" code="266" mandatory="must" may-encrypt="no" vendor-id="10415">
+      <type type-name="Enumerated"/>
+        <enum name="CHANGE_IN_SGSN_IP_ADDRESS" code="1"/>
+        <enum name="CHANGEINQOS_ANY" code="2"/>
+        <enum name="CHANGEINLOCATION_ANY" code="3"/>
+        <enum name="CHANGEINRAT" code="4"/>
+        <enum name="CHANGEINQOS_TRAFFIC_CLASS" code="10"/>
+        <enum name="CHANGEINQOS_RELIABILITY_CLASS" code="11"/>
+        <enum name="CHANGEINQOS_DELAY_CLASS" code="12"/>
+        <enum name="CHANGEINQOS_PEAK_THROUGHPUT" code="13"/>
+        <enum name="CHANGEINQOS_PRECEDENCE_CLASS" code="14"/>
+        <enum name="CHANGEINQOS_MEAN_THROUGHPUT" code="15"/>
+        <enum name="CHANGEINQOS_MAXIMUM_BIT_RATE_FOR_UPLINK" code="16"/>
+        <enum name="CHANGEINQOS_MAXIMUM_BIT_RATE_FOR_DOWNLINK" code="17"/>
+        <enum name="CHANGEINQOS_RESIDUAL_BER" code="18"/>
+        <enum name="CHANGEINQOS_SDU_ERROR_RATIO" code="19"/>
+        <enum name="CHANGEINQOS_TRANSFER_DELAY" code="20"/>
+        <enum name="CHANGEINQOS_TRAFFIC_HANDLING_PRIORITY" code="21"/>
+        <enum name="CHANGEINQOS_GUARANTEED_BIT_RATE_FOR_UPLINK" code="22"/>
+        <enum name="CHANGEINQOS_GUARANTEED_BIT_RATE_FOR_DOWNLINK" code="23"/>
+        <enum name="CHANGEINLOCATION_MCC" code="30"/>
+        <enum name="CHANGEINLOCATION_MNC" code="31"/>
+        <enum name="CHANGEINLOCATION_RAC" code="32"/>
+        <enum name="CHANGEINLOCATION_LAC" code="33"/>
+        <enum name="CHANGEINLOCATION_CellId" code="34"/>
+    </avp>
+    <avp name="Gx970-Experimental-Result" code="297" mandatory="must" may-encrypt="yes" protected="may">
+      <grouped>
+        <required>
+          <avprule name="Vendor-Id" maximum="1" minimum="1"/>
+          <avprule name="Gx970-Experimental-Result-Code" maximum="1" minimum="1"/>
+        </required>
+      </grouped>
+    </avp>
+    <avp name="Gx970-Experimental-Result-Code" code="298" mandatory="must" may-encrypt="yes" protected="may">
+      <type type-name="Unsigned32"/>
+    </avp>
+    <avp name="Service-Context-Id" code="461" mandatory="must" protected="may">
+      <type type-name="UTF8String"/>
+    </avp>
+    <avp name="Gx970-AF-Signalling-Protocol" code="529" mandatory="mustnot" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="Enumerated"/>
+      <enum name="NO_INFORMATION" code="0"/>
+      <enum name="SIP" code="1"/>
+    </avp>
+    <avp name="Gx970-Charging-Information" code="618" mandatory="must" may-encrypt="no" vendor-id="10415">
+      <grouped>
+        <optional>
+          <avprule name="Gx970-Primary-Event-Charging-Function-Name" maximum="1"/>
+          <avprule name="Gx970-Secondary-Event-Charging-Function-Name" maximum="1"/>
+          <avprule name="Gx970-Primary-Charging-Collection-Function-Name" maximum="1"/>
+          <avprule name="Gx970-Secondary-Charging-Collection-Function-Name" maximum="1"/>
+          <avprule name="AVP"/>
+        </optional>
+      </grouped>
+    </avp>
+     <avp name="Gx970-Primary-Event-Charging-Function-Name" code="619" mandatory="must" may-encrypt="no" vendor-id="10415">
+      <type type-name="DiameterURI"/>
+    </avp>
+    <avp name="Gx970-Secondary-Event-Charging-Function-Name" code="620" mandatory="must" may-encrypt="no" vendor-id="10415">
+      <type type-name="DiameterURI"/>
+    </avp>
+    <avp name="Gx970-Primary-Charging-Collection-Function-Name" code="621" mandatory="must" may-encrypt="no" vendor-id="10415">
+       <type type-name="DiameterURI"/>
+    </avp>
+    <avp name="Gx970-Secondary-Charging-Collection-Function-Name" code="622" mandatory="must" may-encrypt="no" vendor-id="10415">
+       <type type-name="DiameterURI"/>
+    </avp>
+    <avp name="Supported-Features" code="628" mandatory="may" may-encrypt="yes" protected="may" vendor-id="10415">
+      <grouped>
+        <required>
+          <avprule name="Vendor-Id" maximum="1" minimum="1"/>
+          <avprule name="Feature-List-ID" maximum="1" minimum="1"/>
+          <avprule name="Feature-List" maximum="1" minimum="1"/>
+        </required>
+        <optional>
+          <avprule name="AVP"/>
+        </optional>
+      </grouped>
+    </avp>
+    <avp name="Gx970-RAI" code="909" mandatory="must" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="UTF8String"/>
+    </avp>     
+    <avp name="Gx970-Bearer-Usage" code="1000" mandatory="must" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="Enumerated"/>
+      <enum name="GENERAL" code="0"/>
+      <enum name="IMS_SIGNALLING" code="1"/>
+    </avp>
+    <avp name="Gx970-Charging-Rule-Install" code="1001" mandatory="must" may-encrypt="yes" protected="may" vendor-id="10415">
+      <grouped>
+        <optional>
+          <avprule name="Gx970-Charging-Rule-Definition"/>
+          <avprule name="Gx970-Charging-Rule-Name"/>
+          <avprule name="Gx970-Charging-Rule-Base-Name"/>
+          <avprule name="Gx970-Bearer-Identifier" maximum="1"/>
+          <avprule name="Gx970-Rule-Activation-Time" maximum="1"/>
+          <avprule name="Gx970-Rule-Deactivation-Time" maximum="1"/>
+          <avprule name="Gx970-Resource-Allocation-Notification" maximum="1"/>
+          <avprule name="Gx970-Charging-Correlation-Indicator" maximum="1"/>
+          <avprule name="AVP"/>
+        </optional>
+      </grouped>
+    </avp>
+    <avp name="Gx970-Charging-Rule-Remove" code="1002" mandatory="must" may-encrypt="yes" protected="may" vendor-id="10415">
+      <grouped>
+        <optional>
+          <avprule name="Gx970-Charging-Rule-Name"/>
+          <avprule name="Gx970-Charging-Rule-Base-Name"/>
+          <avprule name="AVP"/>
+        </optional>
+      </grouped>
+    </avp>
+    <avp name="Gx970-Charging-Rule-Definition" code="1003" mandatory="must" may-encrypt="yes" protected="may" vendor-id="10415">
+      <grouped>
+        <required>
+          <avprule name="Gx970-Charging-Rule-Name" maximum="1" minimum="1"/>
+        </required>
+        <optional>
+         <avprule name="Service-Identifier" maximum="1"/>
+         <avprule name="Rating-Group" maximum="1"/>
+         <avprule name="Gx970-Flow-Information"/>
+         <avprule name="Gx970-Flow-Status" maximum="1"/>
+         <avprule name="Gx970-QoS-Information" maximum="1"/>
+         <avprule name="Gx970-Reporting-Level" maximum="1"/>
+         <avprule name="Gx970-Online" maximum="1"/>
+         <avprule name="Gx970-Offline" maximum="1"/>
+         <avprule name="Gx970-Metering-Method" maximum="1"/>
+         <avprule name="Gx970-Precedence" maximum="1"/>
+         <avprule name="Gx970-AF-Charging-Identifier" maximum="1"/>
+         <avprule name="Gx970-Flows"/>
+         <avprule name="Gx970-Monitoring-Key" maximum="1"/>
+         <avprule name="Gx970-AF-Signalling-Protocol" maximum="1"/>
+         <avprule name="AVP"/>
+        </optional>
+      </grouped>
+    </avp>
+    <avp name="Gx970-Charging-Rule-Base-Name" code="1004" mandatory="must" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="UTF8String"/>
+    </avp>
+    <avp name="Gx970-Charging-Rule-Name" code="1005" mandatory="must" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="OctetString"/>
+    </avp>
+    <avp name="Gx970-Event-Trigger" code="1006" mandatory="must" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="Enumerated"/>
+      <enum name="SGSN_CHANGE" code="0"/>
+      <enum name="QOS_CHANGE" code="1"/>
+      <enum name="RAT_CHANGE" code="2"/>
+      <enum name="TFT_CHANGE" code="3"/>
+      <enum name="PLMN_CHANGE" code="4"/>
+      <enum name="LOSS_OF_BEARER" code="5"/>
+      <enum name="RECOVERY_OF_BEARER" code="6"/>
+      <enum name="IP-CAN_CHANGE" code="7"/>
+      <enum name="QOS_CHANGE_EXCEEDING_AUTHORIZATION" code="11"/>
+      <enum name="RAI_CHANGE" code="12"/>
+      <enum name="USER_LOCATION_CHANGE" code="13"/>
+      <enum name="NO_EVENT_TRIGGERS" code="14"/>
+      <enum name="OUT_OF_CREDIT" code="15"/>
+      <enum name="REALLOCATION_OF_CREDIT" code="16"/>
+      <enum name="REVALIDATION_TIMEOUT" code="17"/>
+      <enum name="UE_IP_ADDRESS_ALLOCATE" code="18"/>
+      <enum name="UE_IP_ADDRESS_RELEASE" code="19"/>
+      <enum name="DEFAULT_EPS_BEARER_QOS_CHANGE" code="20"/>
+      <enum name="AN_GW_CHANGE" code="21"/>
+      <enum name="SUCCESSFUL_RESOURCE_ALLOCATION" code="22"/>
+      <enum name="RESOURCE_MODIFICATION_REQUEST" code="23"/>
+      <enum name="PGW_TRACE_CONTROL" code="24"/>
+      <enum name="UE_TIME_ZONE_CHANGE" code="25"/>
+      <enum name="TAI_CHANGE" code="26"/>
+      <enum name="ECGI_CHANGE" code="27"/>
+      <enum name="CHARGING_CORRELATION_EXCHANGE" code="28"/>
+      <enum name="APN-AMBR_MODIFICATION_FAILURE" code="29"/>
+      <enum name="USER_CSG_INFORMATION_CHANGE" code="30"/>
+      <enum name="USAGE_REPORT" code="33"/>
+      <enum name="DEFAULT-EPS-BEARER-QOS_MODIFICATION_FAILURE" code="34"/>
+      <enum name="USER_CSG_HYBRID_SUBSCRIBED_INFORMATION_CHANGE" code="35"/>
+      <enum name="USER_CSG_HYBRID_UNSUBSCRIBED_INFORMATION_CHANGE" code="36"/>
+    </avp>
+    <avp name="Gx970-Metering-Method" code="1007" mandatory="must" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="Enumerated"/>
+        <enum name="DURATION" code="0"/>
+        <enum name="VOLUME" code="1"/>
+        <enum name="DURATION_VOLUME" code="2"/>
+     </avp>
+    <avp name="Gx970-Offline" code="1008" mandatory="must" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="Enumerated"/>
+        <enum name="DISABLE_OFFLINE" code="0"/>
+        <enum name="ENABLE_OFFLINE" code="1"/>
+     </avp>
+    <avp name="Gx970-Online" code="1009" mandatory="must" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="Enumerated"/>
+        <enum name="DISABLE_ONLINE" code="0"/>
+        <enum name="ENABLE_ONLINE" code="1"/>
+     </avp>
+    <avp name="Gx970-Precedence" code="1010" mandatory="must" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="Unsigned32"/>
+    </avp>
+    <avp name="Gx970-Reporting-Level" code="1011" mandatory="must" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="Enumerated"/>
+        <enum name="SERVICE_IDENTIFIER_LEVEL" code="0"/>
+        <enum name="RATING_GROUP_LEVEL" code="1"/>
+     </avp>
+    <avp name="Gx970-TFT-Filter" code="1012" mandatory="must" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="IPFilterRule"/>
+    </avp>
+    <avp name="Gx970-TFT-Packet-Filter-Information" code="1013" mandatory="must" may-encrypt="yes" protected="may" vendor-id="10415">
+      <grouped>
+        <optional>
+          <avprule name="Gx970-Precedence" maximum="1"/>
+          <avprule name="Gx970-TFT-Filter" maximum="1"/>
+          <avprule name="Gx970-ToS-Traffic-Class" maximum="1"/>
+          <avprule name="Gx970-Security-Parameter-Index" maximum="1"/>
+          <avprule name="Gx970-Flow-Label" maximum="1"/>
+          <avprule name="Gx970-Flow-Direction" maximum="1"/>
+          <avprule name="AVP"/>
+        </optional>
+      </grouped>
+    </avp>
+    <avp name="Gx970-ToS-Traffic-Class" code="1014" mandatory="must" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="OctetString"/>
+    </avp>
+    <avp name="Gx970-QoS-Information" code="1016" mandatory="must" may-encrypt="yes" protected="may" vendor-id="10415">
+      <grouped>
+        <optional>
+          <avprule name="Gx970-QoS-Class-Identifier" maximum="1"/>
+          <avprule name="Gx970-Max-Requested-Bandwidth-UL" maximum="1"/>
+          <avprule name="Gx970-Max-Requested-Bandwidth-DL" maximum="1"/>
+          <avprule name="Gx970-Guaranteed-Bitrate-UL" maximum="1"/>
+          <avprule name="Gx970-Guaranteed-Bitrate-DL" maximum="1"/>
+          <avprule name="Gx970-Bearer-Identifier" maximum="1"/>
+          <avprule name="Gx970-Allocation-Retention-Priority" maximum="1"/>
+          <avprule name="Gx970-APN-Aggregate-Max-Bitrate-UL" maximum="1"/>
+          <avprule name="Gx970-APN-Aggregate-Max-Bitrate-DL" maximum="1"/>
+          <avprule name="AVP"/>
+        </optional>
+      </grouped>
+    </avp>
+    <avp name="Gx970-Charging-Rule-Report" code="1018" mandatory="must" may-encrypt="yes" protected="may" vendor-id="10415">
+      <grouped>
+        <optional>
+          <avprule name="Gx970-Charging-Rule-Name"/>
+          <avprule name="Gx970-Charging-Rule-Base-Name"/>
+          <avprule name="Gx970-Bearer-Identifier" maximum="1"/>
+          <avprule name="Gx970-PCC-Rule-Status" maximum="1"/>
+          <avprule name="Gx970-Rule-Failure-Code" maximum="1"/>
+          <avprule name="Gx970-Final-Unit-Indication" maximum="1"/>
+          <avprule name="AVP"/>
+        </optional>
+      </grouped>
+    </avp>
+    <avp name="Gx970-PCC-Rule-Status" code="1019" mandatory="must" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="Enumerated"/>
+      <enum name="ACTIVE" code="0"/>
+      <enum name="INACTIVE" code="1"/>
+      <enum name="TEMPORARILY INACTIVE" code="2"/>
+    </avp>
+    <avp name="Gx970-Bearer-Identifier" code="1020" mandatory="must" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="OctetString"/>
+    </avp>
+    <avp name="Gx970-Bearer-Operation" code="1021" mandatory="must" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="Enumerated"/>
+        <enum name="TERMINATION" code="0"/>
+        <enum name="ESTABLISHMENT" code="1"/>
+        <enum name="MODIFICATION" code="2"/>
+    </avp>
+    <avp name="Gx970-Access-Network-Charging-Identifier-Gx" code="1022" mandatory="must" may-encrypt="yes" protected="may" vendor-id="10415">
+      <grouped>
+        <required>
+          <avprule name="Gx970-Access-Network-Charging-Identifier-Value" maximum="1" minimum="1"/>
+        </required>
+        <optional>
+          <avprule name="Gx970-Charging-Rule-Base-Name"/>
+          <avprule name="Gx970-Charging-Rule-Name"/>
+        </optional>
+      </grouped>
+    </avp>
+    <avp name="Gx970-Bearer-Control-Mode" code="1023" mandatory="must" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="Enumerated"/>
+        <enum name="UE_ONLY" code="0"/>
+        <enum name="RESERVED" code="1"/>
+        <enum name="UE_NW" code="2"/>
+    </avp>
+    <avp name="Gx970-Network-Request-Support" code="1024" mandatory="must" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="Enumerated"/>
+        <enum name="NETWORK_REQUEST_NOT_SUPPORTED" code="0"/>
+        <enum name="NETWORK_REQUEST_SUPPORTED" code="1"/>
+    </avp>
+    <avp name="Gx970-Guaranteed-Bitrate-DL" code="1025" mandatory="must" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="Unsigned32"/>
+    </avp>
+    <avp name="Gx970-Guaranteed-Bitrate-UL" code="1026" mandatory="must" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="Unsigned32"/>
+    </avp>
+    <avp name="Gx970-IP-CAN-Type" code="1027" mandatory="must" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="Enumerated"/>
+      <enum name="3GPP-GPRS" code="0"/>
+      <enum name="DOCSIS" code="1"/>
+      <enum name="xDSL" code="2"/>
+      <enum name="WiMAX" code="3"/>
+      <enum name="3GPP2" code="4"/>
+      <enum name="3GPP-EPS" code="5"/>
+      <enum name="Non-3GPP-EPS" code="6"/>
+    </avp>
+    <avp name="Gx970-QoS-Class-Identifier" code="1028" mandatory="must" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="Enumerated"/>
+        <enum name="Conversational_1" code="1"/>
+        <enum name="Conversational_2" code="2"/>
+        <enum name="Streaming_1" code="3"/>
+        <enum name="Streaming_2" code="4"/>
+        <enum name="Interactive_1" code="5"/>
+        <enum name="Interactive_2" code="6"/>
+        <enum name="Interactive_3" code="7"/>
+        <enum name="Interactive_4" code="8"/>
+        <enum name="Background" code="9"/>
+    </avp>
+    <avp name="Gx970-QoS-Negotiation" code="1029" mandatory="must" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="Enumerated"/>
+      <enum name="NO_QoS_NEGOTIATION" code="0"/>
+      <enum name="QoS_NEGOTIATION_SUPPORTED" code="1"/>
+    </avp>
+    <avp name="Gx970-QoS-Upgrade" code="1030" mandatory="must" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="Enumerated"/>
+      <enum name="QoS_UPGRADE_NOT_SUPPORTED" code="0"/>
+      <enum name="QoS_UPGRADE_SUPPORTED" code="1"/>
+    </avp>
+    <avp name="Gx970-Rule-Failure-Code" code="1031" mandatory="must" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="Enumerated"/>
+      <enum name="UNKNOWN_RULE_NAME" code="1"/>
+      <enum name="RATING_GROUP_ERROR" code="2"/>
+      <enum name="SERVICE_IDENTIFIER_ERROR" code="3"/>
+      <enum name="GW/PCEF_MALFUNCTION" code="4"/>
+      <enum name="RESOURCES_LIMITATION" code="5"/>
+      <enum name="MAX_NR_BEARERS_REACHED" code="6"/>
+      <enum name="UNKNOWN_BEARER_ID" code="7"/>
+      <enum name="MISSING_BEARER_ID" code="8"/>
+      <enum name="MISSING_FLOW_INFORMATION" code="9"/>
+      <enum name="RESOURCE_ALLOCATION_FAILURE" code="10"/>
+      <enum name="UNSUCCESSFUL_QOS_VALIDATION" code="11"/>
+      <enum name="PS_TO_CS_HANDOVER" code="12"/>
+    </avp>
+    <avp name="Gx970-RAT-Type" code="1032" mandatory="mustnot" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="Enumerated"/>
+        <enum name="WLAN" code="0"/>
+        <enum name="UTRAN" code="1000"/>
+        <enum name="GERAN" code="1001"/>
+        <enum name="GAN" code="1002"/>
+        <enum name="HSPA_EVOLUTION" code="1003"/>
+        <enum name="EUTRAN" code="1004"/>
+        <enum name="CDMA2000_1X" code="2000"/>
+        <enum name="HRPD" code="2001"/>
+        <enum name="UMB" code="2002"/>
+        <enum name="EHRPD" code="2003"/>
+    </avp>
+    <avp name="Gx970-Event-Report-Indication" code="1033" mandatory="mustnot" may-encrypt="yes" protected="may" vendor-id="10415">
+      <grouped>
+        <optional>
+          <avprule name="Gx970-Event-Trigger"/>
+          <avprule name="Gx970-User-CSG-Information" maximum="1"/>
+          <avprule name="Gx970-RAT-Type" maximum="1"/>
+          <avprule name="Gx970-QoS-Information" maximum="1"/>
+          <avprule name="Gx970-RAI" maximum="1"/>
+          <avprule name="Gx970-3GPP-User-Location-Info" maximum="1"/>
+          <avprule name="Gx970-Trace-Data" maximum="1"/>
+          <avprule name="Gx970-Trace-Reference" maximum="1"/>
+          <avprule name="Gx970-3GPP2-BSID" maximum="1"/>
+          <avprule name="Gx970-3GPP-MS-TimeZone" maximum="1"/>
+          <avprule name="Gx970-3GPP-SGSN-Address" maximum="1"/>
+          <avprule name="Gx970-3GPP-SGSN-IPv6-Address" maximum="1"/>
+          <avprule name="AVP"/>
+        </optional>
+      </grouped>
+    </avp>
+    <avp name="Gx970-3GPP2-BSID" code="9010" mandatory="must" may-encrypt="no" protected="may" vendor-id="5535">
+      <type type-name="UTF8String"/>
+    </avp>
+    <avp name="Gx970-Allocation-Retention-Priority" code="1034" mandatory="must" may-encrypt="yes" protected="may" vendor-id="10415">
+      <grouped>
+        <required>
+          <avprule name="Gx970-Priority-Level" maximum="1" minimum="1"/>
+        </required>
+        <optional>
+          <avprule name="Gx970-Pre-emption-Capability" maximum="1"/>
+          <avprule name="Gx970-Pre-emption-Vulnerability" maximum="1"/>
+        </optional>
+      </grouped>
+    </avp>
+    <avp name="Gx970-CoA-IP-Address" code="1035" mandatory="mustnot" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="Address"/>
+    </avp>
+    <avp name="Gx970-Tunnel-Header-Filter" code="1036" mandatory="mustnot" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="IPFilterRule"/>
+    </avp>
+    <avp name="Gx970-Tunnel-Header-Length" code="1037" mandatory="mustnot" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="Unsigned32"/>
+    </avp>
+    <avp name="Gx970-Tunnel-Information" code="1038" mandatory="mustnot" may-encrypt="yes" protected="may" vendor-id="10415">
+      <grouped>
+        <optional>
+          <avprule name="Gx970-Tunnel-Header-Length" maximum="1"/>
+          <avprule name="Gx970-Tunnel-Header-Filter" maximum="2"/>
+          <avprule name="AVP"/>
+        </optional>
+      </grouped>
+    </avp>
+    <avp name="Gx970-CoA-Information" code="1039" mandatory="mustnot" may-encrypt="yes" protected="may" vendor-id="10415">
+      <grouped>
+        <required>
+          <avprule name="Gx970-Tunnel-Information" maximum="1" minimum="1"/>
+          <avprule name="Gx970-CoA-IP-Address" maximum="1" minimum="1"/>
+        </required>
+        <optional>
+          <avprule name="AVP"/>
+        </optional>
+      </grouped>
+    </avp>
+    <avp name="Gx970-APN-Aggregate-Max-Bitrate-DL" code="1040" mandatory="mustnot" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="Unsigned32"/>
+    </avp>
+    <avp name="Gx970-APN-Aggregate-Max-Bitrate-UL" code="1041" mandatory="mustnot" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="Unsigned32"/>
+    </avp>
+    <avp name="Gx970-Revalidation-Time" code="1042" mandatory="must" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="Unsigned32"/>
+    </avp>
+    <avp name="Gx970-Rule-Activation-Time" code="1043" mandatory="must" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="Unsigned32"/>
+    </avp>
+    <avp name="Gx970-Rule-Deactivation-Time" code="1044" mandatory="must" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="Unsigned32"/>
+    </avp>
+    <avp name="Gx970-Session-Release-Cause" code="1045" mandatory="must" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="Enumerated"/>
+      <enum name="UNSPECIFIED_REASON" code="0"/>
+      <enum name="UE_SUBSCRIPTION_REASON" code="1"/>
+      <enum name="INSUFFICIENT_SERVER_RESOURCES" code="2"/>
+    </avp>
+    <avp name="Gx970-Priority-Level" code="1046" mandatory="mustnot" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="Unsigned32"/>
+    </avp>
+    <avp name="Gx970-Pre-emption-Capability" code="1047" mandatory="mustnot" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="Enumerated"/>
+      <enum name="PRE-EMPTION_CAPABILITY_ENABLED" code="0"/>
+      <enum name="PRE-EMPTION_CAPABILITY_DISABLED" code="1"/>
+    </avp>
+    <avp name="Gx970-Pre-emption-Vulnerability" code="1048" mandatory="mustnot" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="Enumerated"/>
+      <enum name="PRE-EMPTION_VULNERABILITY_ENABLED" code="0"/>
+      <enum name="PRE-EMPTION_VULNERABILITY_DISABLED" code="1"/>
+    </avp> 
+    <avp name="Gx970-Default-EPS-Bearer-QoS" code="1049" mandatory="mustnot" may-encrypt="yes" protected="may" vendor-id="10415">
+      <grouped>
+        <optional>
+          <avprule name="Gx970-QoS-Class-Identifier" maximum="1"/>
+          <avprule name="Gx970-Allocation-Retention-Priority" maximum="1"/>
+          <avprule name="AVP"/>
+        </optional>
+      </grouped>
+    </avp>
+    <avp name="Gx970-AN-GW-Address" code="1050" mandatory="mustnot" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="Address"/>
+    </avp>
+    <avp name="Gx970-QoS-Rule-Install" code="1051" mandatory="must" may-encrypt="yes" protected="may" vendor-id="10415">
+      <grouped>
+        <optional>
+          <avprule name="Gx970-QoS-Rule-Definition"/>
+          <avprule name="Gx970-QoS-Rule-Name"/>
+          <avprule name="Gx970-QoS-Rule-Base-Name"/>
+          <avprule name="Gx970-Tunnel-Information" maximum="1"/>
+          <avprule name="Gx970-Access-Network-Charging-Identifier-Value" maximum="1"/>
+          <avprule name="Gx970-Resource-Allocation-Notification" maximum="1"/>
+          <avprule name="Gx970-Rule-Activation-Time" maximum="1"/>
+          <avprule name="Gx970-Rule-Deactivation-Time" maximum="1"/>
+          <avprule name="AVP"/>
+        </optional>
+      </grouped>
+    </avp>
+    <avp name="Gx970-QoS-Rule-Remove" code="1052" mandatory="must" may-encrypt="yes" protected="may" vendor-id="10415">
+      <grouped>
+        <optional>
+          <avprule name="Gx970-QoS-Rule-Name"/>
+          <avprule name="Gx970-QoS-Rule-Base-Name"/>
+          <avprule name="AVP"/>
+        </optional>
+      </grouped>
+    </avp>
+    <avp name="Gx970-QoS-Rule-Definition" code="1053" mandatory="must" may-encrypt="yes" protected="may" vendor-id="10415">
+      <grouped>
+        <required>
+          <avprule name="Gx970-QoS-Rule-Name" maximum="1" minimum="1"/>
+        </required>
+        <optional>
+          <avprule name="Gx970-Flow-Information"/>
+          <avprule name="Gx970-QoS-Information" maximum="1"/>
+          <avprule name="Gx970-Precedence" maximum="1"/>
+          <avprule name="AVP"/>
+        </optional>
+      </grouped>
+    </avp>
+    <avp name="Gx970-QoS-Rule-Name" code="1054" mandatory="must" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="OctetString"/>
+    </avp>
+    <avp name="Gx970-QoS-Rule-Report" code="1055" mandatory="must" may-encrypt="yes" protected="may" vendor-id="10415">
+      <grouped>
+        <optional>
+          <avprule name="Gx970-QoS-Rule-Name"/>
+          <avprule name="Gx970-QoS-Rule-Base-Name"/>
+          <avprule name="Gx970-PCC-Rule-Status" maximum="1"/>
+          <avprule name="Gx970-Rule-Failure-Code" maximum="1"/>
+          <avprule name="AVP"/>
+        </optional>
+      </grouped>
+    </avp>
+    <avp name="Gx970-Security-Parameter-Index" code="1056" mandatory="mustnot" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="OctetString"/>
+    </avp>
+    <avp name="Gx970-Flow-Label" code="1057" mandatory="mustnot" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="OctetString"/>
+    </avp>
+    <avp name="Gx970-Flow-Information" code="1058" mandatory="mustnot" may-encrypt="yes" protected="may" vendor-id="10415">
+      <grouped>
+        <optional>
+          <avprule name="Gx970-Flow-Description" maximum="1"/>
+          <avprule name="Gx970-Packet-Filter-Identifier" maximum="1"/>
+          <avprule name="Gx970-Packet-Filter-Usage" maximum="1"/>
+          <avprule name="Gx970-ToS-Traffic-Class" maximum="1"/>
+          <avprule name="Gx970-Security-Parameter-Index" maximum="1"/>
+          <avprule name="Gx970-Flow-Label" maximum="1"/>
+          <avprule name="Gx970-Flow-Direction" maximum="1"/>
+          <avprule name="AVP"/>
+        </optional>
+      </grouped>
+    </avp>
+    <avp name="Gx970-Packet-Filter-Content" code="1059" mandatory="mustnot" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="IPFilterRule"/>
+    </avp>
+    <avp name="Gx970-Packet-Filter-Identifier" code="1060" mandatory="mustnot" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="OctetString"/>
+    </avp>
+    <avp name="Gx970-Packet-Filter-Information" code="1061" mandatory="mustnot" may-encrypt="yes" protected="may" vendor-id="10415">
+      <grouped>
+        <optional>
+          <avprule name="Gx970-Packet-Filter-Identifier" maximum="1"/>
+          <avprule name="Gx970-Precedence" maximum="1"/>
+          <avprule name="Gx970-Packet-Filter-Content" maximum="1"/>
+          <avprule name="Gx970-ToS-Traffic-Class" maximum="1"/>
+          <avprule name="Gx970-Security-Parameter-Index" maximum="1"/>
+          <avprule name="Gx970-Flow-Label" maximum="1"/>
+          <avprule name="Gx970-Flow-Direction" maximum="1"/>
+          <avprule name="AVP"/>
+        </optional>
+      </grouped>
+    </avp>        
+    <avp name="Gx970-Packet-Filter-Operation" code="1062" mandatory="mustnot" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="Enumerated"/>
+      <enum name="DELETION" code="0"/>
+      <enum name="ADDITION" code="1"/>
+      <enum name="MODIFICATION" code="2"/>
+    </avp>
+    <avp name="Gx970-Resource-Allocation-Notification" code="1063" mandatory="mustnot" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="Enumerated"/>
+      <enum name="ENABLE_NOTIFICATION" code="0"/>
+    </avp>
+    <avp name="Gx970-Session-Linking-Indicator" code="1064" mandatory="must" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="Enumerated"/>
+      <enum name="SESSION_LINKING_IMMEDIATE" code="0"/>
+      <enum name="SESSION_LINKING_DEFERRED" code="1"/>
+    </avp>
+    <avp name="Gx970-PDN-Connection-Id" code="1065" mandatory="mustnot" may-encrypt="yes" protected="may" vendor-id="10415">
+        <type type-name="OctetString"/>
+    </avp>
+    <avp name="Gx970-Monitoring-Key" code="1066" mandatory="mustnot" may-encrypt="yes" protected="may" vendor-id="10415">
+        <type type-name="OctetString"/>
+    </avp>
+    <avp name="Gx970-Usage-Monitoring-Information" code="1067" mandatory="mustnot" may-encrypt="yes" protected="may" vendor-id="10415">
+      <grouped>
+        <optional>
+          <avprule name="Gx970-Monitoring-Key" maximum="1"/>
+          <avprule name="Gx970-Granted-Service-Unit" maximum="1"/>
+          <avprule name="Gx970-Used-Service-Unit" maximum="1"/>
+          <avprule name="Gx970-Usage-Monitoring-Level" maximum="1"/>
+          <avprule name="Gx970-Usage-Monitoring-Report" maximum="1"/>
+          <avprule name="Gx970-Usage-Monitoring-Support" maximum="1"/>
+          <avprule name="AVP"/>
+        </optional>
+      </grouped>
+    </avp>  
+    <avp name="Gx970-Usage-Monitoring-Level" code="1068" mandatory="mustnot" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="Enumerated"/>
+      <enum name="SESSION_LEVEL" code="0"/>
+      <enum name="PCC_RULE_LEVEL" code="1"/>
+    </avp>
+    <avp name="Gx970-Usage-Monitoring-Report" code="1069" mandatory="mustnot" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="Enumerated"/>
+      <enum name="USAGE_MONITORING_REPORT_REQUIRED" code="0"/>
+    </avp>
+    <avp name="Gx970-Usage-Monitoring-Support" code="1070" mandatory="mustnot" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="Enumerated"/>
+      <enum name="USAGE_MONITORING_DISABLED" code="0"/>
+    </avp>
+    <avp name="Gx970-CSG-Information-Reporting" code="1071" mandatory="mustnot" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="Enumerated"/>
+      <enum name="CHANGE_CSG_CELL" code="0"/>
+      <enum name="CHANGE_CSG_SUBSCRIBED_HYBRID_CELL" code="1"/>
+      <enum name="CHANGE_CSG_UNSUBSCRIBED_HYBRID_CELL" code="2"/>
+    </avp>
+    <avp name="Gx970-Packet-Filter-Usage" code="1072" mandatory="mustnot" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="Enumerated"/>
+      <enum name="SEND_TO_UE" code="0"/>
+    </avp>
+    <avp name="Gx970-Charging-Correlation-Indicator" code="1073" mandatory="mustnot" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="Enumerated"/>
+      <enum name="CHARGING_IDENTIFIER_REQUIRED" code="0"/>
+    </avp>
+    <avp name="Gx970-QoS-Rule-Base-Name" code="1074" mandatory="must" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="UTF8String"/>
+    </avp>
+    <avp name="Gx970-Flow-Direction" code="1080" mandatory="mustnot" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="Enumerated"/>
+      <enum name="UNSPECIFIED" code="0"/>
+      <enum name="DOWNLINK" code="1"/>
+      <enum name="UPLINK" code="2"/>
+      <enum name="BIDIRECTIONAL" code="3"/>
+    </avp>
+    <avp name="Gx970-CSG-Id" code="1437" mandatory="must" may-encrypt="no" protected="may" vendor-id="10415">
+      <type type-name="Unsigned32"/>
+    </avp>
+    <avp name="Gx970-CSG-Access-Mode" code="2317" mandatory="must" may-encrypt="no" protected="may" vendor-id="10415">
+      <type type-name="Enumerated"/>
+      <enum name="Closed_mode" code="0"/>
+      <enum name="Hybrid_Mode" code="1"/>
+    </avp>
+    <avp name="Gx970-CSG-Membership-Indication" code="2318" mandatory="must" may-encrypt="no" protected="may" vendor-id="10415">
+      <type type-name="Enumerated"/>
+      <enum name="Not_CSG_member" code="0"/>
+      <enum name="CSG_Member" code="1"/>
+    </avp>
+    <avp name="Gx970-User-CSG-Information" code="2319" mandatory="must" may-encrypt="no" protected="may" vendor-id="10415">
+      <grouped>
+        <required>
+          <avprule name="Gx970-CSG-Id" maximum="1" minimum="1"/>
+          <avprule name="Gx970-CSG-Access-Mode" maximum="1" minimum="1"/>
+        </required>
+        <optional>
+          <avprule name="Gx970-CSG-Membership-Indication" maximum="1"/>
+        </optional>
+      </grouped>
+    </avp> 
+    
+    <avp name="Gx970-Trace-Data" code="1458" mandatory="must" may-encrypt="no" protected="may" vendor-id="10415">
+      <grouped>
+        <required>
+          <avprule name="Gx970-Trace-Reference" maximum="1" minimum="1"/>
+          <avprule name="Gx970-Trace-Depth" maximum="1" minimum="1"/>
+          <avprule name="Gx970-Trace-Event-List" maximum="1" minimum="1"/>
+        </required>
+        <optional>
+          <avprule name="Gx970-Trace-Interface-List" maximum="1"/>
+          <avprule name="Gx970-OMC-Id" maximum="1"/>
+        </optional>
+      </grouped>
+    </avp> 
+    <avp name="Gx970-Trace-Reference" code="1459" mandatory="must" may-encrypt="no" protected="may" vendor-id="10415">
+      <type type-name="OctetString"/>
+    </avp>
+    <avp name="Gx970-Trace-Depth" code="1462" mandatory="must" may-encrypt="no" protected="may" vendor-id="10415">
+      <type type-name="Enumerated"/>
+        <enum name="Minimum" code="0"/>
+        <enum name="Medium" code="1"/>
+        <enum name="Maximum" code="2"/>
+        <enum name="MinimumWithoutVendorSpecificExtension" code="3"/>
+        <enum name="MediumWithoutVendorSpecificExtension" code="4"/>
+        <enum name="MaximumWithoutVendorSpecificExtension" code="5"/>
+    </avp>
+    <avp name="Gx970-Trace-Interface-List" code="1464" mandatory="must" may-encrypt="no" protected="may" vendor-id="10415">
+          <type type-name="OctetString"/>
+     </avp>
+    <avp name="Gx970-Trace-Event-List" code="1465" mandatory="must" may-encrypt="no" protected="may" vendor-id="10415">
+        <type type-name="OctetString"/>
+     </avp>
+    <avp name="Gx970-OMC-Id" code="1466" mandatory="must" may-encrypt="no" protected="may" vendor-id="10415">
+       <type type-name="OctetString"/>
+    </avp>  
+    <avp name="Feature-List-ID" code="629" mandatory="mustnot" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="Unsigned32"/>
+    </avp>
+    <avp name="Feature-List" code="630" mandatory="mustnot" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="Unsigned32"/>
+    </avp>
+    <avp name="Gx970-Access-Network-Charging-Address" code="501" mandatory="must" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="Address"/>
+    </avp>
+    <avp name="Gx970-Access-Network-Charging-Identifier-Value" code="503" mandatory="must" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="OctetString"/>
+    </avp>
+    <avp name="Gx970-AF-Charging-Identifier" code="505" mandatory="must" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="OctetString"/>
+    </avp>
+    <avp name="Gx970-Flow-Description" code="507" mandatory="must" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="IPFilterRule"/>
+    </avp>
+    <avp name="Gx970-Flow-Number" code="509" mandatory="must" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="Unsigned32"/>
+    </avp>
+    <avp name="Gx970-Flows" code="510" mandatory="must" may-encrypt="yes" protected="may" vendor-id="10415">
+      <grouped>
+      <required>
+      <avprule name="Gx970-Media-Component-Number" maximum="1" minimum="1"/>
+      </required>
+        <optional>
+          <avprule name="Gx970-Flow-Number"/>
+        </optional>
+      </grouped>
+    </avp>
+    <avp name="Gx970-Flow-Status" code="511" mandatory="must" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="Enumerated"/>
+        <enum name="ENABLED-UPLINK" code="0"/>
+        <enum name="ENABLED-DOWNLINK" code="1"/>
+        <enum name="ENABLED" code="2"/>
+        <enum name="DISABLED" code="3"/>
+        <enum name="REMOVED" code="4"/>
+      </avp>
+    <avp name="Gx970-Max-Requested-Bandwidth-DL" code="515" mandatory="must" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="Unsigned32"/>
+    </avp>
+    <avp name="Gx970-Max-Requested-Bandwidth-UL" code="516" mandatory="must" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="Unsigned32"/>
+    </avp>
+    <avp name="Gx970-Media-Component-Number" code="518" mandatory="must" may-encrypt="yes" protected="may" vendor-id="10415">
+      <type type-name="Unsigned32"/>
+    </avp>
+    <avp name="CC-Correlation-Id" code="411" mandatory="must" may-encrypt="yes" protected="may">
+      <type type-name="OctetString"/> 
+    </avp>
+    <avp name="CC-Input-Octets" code="412" mandatory="must" may-encrypt="yes">
+      <type type-name="Unsigned64"/>
+    </avp>
+    <avp name="CC-Money" code="413" mandatory="must" may-encrypt="yes">
+      <grouped>
+        <required>
+          <avprule name="Unit-Value" maximum="1" minimum="1"/>
+        </required>
+        <optional>
+          <avprule name="Currency-Code" maximum="1"/>
+        </optional>
+      </grouped>
+    </avp>
+    <avp name="CC-Output-Octets" code="414" mandatory="must" may-encrypt="yes">
+      <type type-name="Unsigned64"/>
+    </avp>
+    <avp name="CC-Request-Number" code="415" mandatory="must" may-encrypt="yes">
+      <type type-name="Unsigned32"/>
+    </avp>
+    <avp name="CC-Request-Type" code="416" mandatory="must" may-encrypt="no">
+      <type type-name="Enumerated"/>
+        <enum name="INITIAL_REQUEST" code="1"/>
+        <enum name="UPDATE_REQUEST" code="2"/>
+        <enum name="TERMINATION_REQUEST" code="3"/>
+        <enum name="EVENT_REQUEST" code="4"/>
+    </avp>
+    <avp name="CC-Service-Specific-Units" code="417" mandatory="must" may-encrypt="yes">
+      <type type-name="Unsigned64"/>
+    </avp>
+    <avp name="CC-Session-Failover" code="418" mandatory="must" may-encrypt="no">
+      <type type-name="Enumerated"/>
+        <enum name="FAILOVER_NOT_SUPPORTED" code="0"/>
+        <enum name="FAILOVER_SUPPORTED" code="1"/>
+    </avp>
+    <avp name="CC-Sub-Session-Id" code="419" mandatory="must" may-encrypt="yes">
+      <type type-name="Unsigned64"/>
+    </avp>
+    <avp name="CC-Time" code="420" mandatory="must" may-encrypt="yes">
+      <type type-name="Unsigned32"/>
+    </avp>
+    <avp name="CC-Total-Octets" code="421" mandatory="must" may-encrypt="yes">
+      <type type-name="Unsigned64"/>
+    </avp>
+    <avp name="Check-Balance-Result" code="422" mandatory="must" may-encrypt="no">
+      <type type-name="Enumerated"/>
+        <enum name="ENOUGH_CREDIT" code="0"/>
+        <enum name="NO_CREDIT" code="1"/>
+    </avp>
+    <avp name="Cost-Information" code="423" mandatory="must" may-encrypt="yes">
+      <grouped>
+        <required>
+          <avprule name="Unit-Value" maximum="1" minimum="1"/>
+          <avprule name="Currency-Code" maximum="1" minimum="1"/>
+        </required>
+        <optional>
+          <avprule name="Cost-Unit" maximum="1"/>
+        </optional>
+      </grouped>
+    </avp>
+    <avp name="Cost-Unit" code="424" mandatory="must" may-encrypt="yes" protected="may">
+      <type type-name="UTF8String"/> 
+    </avp>
+    <avp name="Currency-Code" code="425" mandatory="must" may-encrypt="yes">
+      <type type-name="Unsigned32"/>
+    </avp>
+    <avp name="Credit-Control-Failure-Handling" code="427" mandatory="must" may-encrypt="no">
+      <type type-name="Enumerated"/>
+        <enum name="TERMINATE" code="0"/>
+        <enum name="CONTINUE" code="1"/>
+        <enum name="RETRY_AND_TERMINATE" code="2"/>
+    </avp>
+    <avp name="Direct-Debiting-Failure-Handling" code="428" mandatory="must" may-encrypt="no">
+      <type type-name="Enumerated"/>
+        <enum name="TERMINATE_OR_BUFFER" code="0"/>
+        <enum name="CONTINUE" code="1"/>
+    </avp>
+    <avp name="Exponent" code="429" mandatory="must" may-encrypt="yes">
+      <type type-name="Integer32"/>
+    </avp>
+    <avp name="Gx970-Final-Unit-Indication" code="430" mandatory="must" may-encrypt="yes" protected="may">
+      <grouped>
+        <required>
+          <avprule name="Final-Unit-Action" maximum="1" minimum="1"/>
+        </required>
+        <optional>
+          <avprule name="Restriction-Filter-Rule"/>
+          <avprule name="Filter-Id"/>
+          <avprule name="Redirect-Server" maximum="1"/>
+        </optional>
+      </grouped>
+    </avp>
+    <avp name="Gx970-Granted-Service-Unit" code="431" mandatory="must" may-encrypt="yes">
+      <grouped>
+        <optional>
+          <avprule name="Tariff-Time-Change" maximum="1"/>
+          <avprule name="CC-Time" maximum="1"/>
+          <avprule name="CC-Money" maximum="1"/>
+          <avprule name="CC-Total-Octets" maximum="1"/>
+          <avprule name="CC-Input-Octets" maximum="1"/>
+          <avprule name="CC-Output-Octets" maximum="1"/>
+          <avprule name="CC-Service-Specific-Units" maximum="1"/>
+          <avprule name="AVP"/>
+        </optional>
+      </grouped>
+    </avp>
+    <avp name="Rating-Group" code="432" mandatory="must" may-encrypt="yes">
+      <type type-name="Unsigned32"/>
+    </avp>
+    <avp name="Redirect-Address-Type" code="433" mandatory="must" may-encrypt="yes" protected="may">
+      <type type-name="Enumerated"/>
+      <enum name="IPv4" code="0"/>
+      <enum name="IPv6" code="1"/>
+      <enum name="URL" code="2"/>
+      <enum name="SIP_URI" code="3"/>      
+    </avp>
+    <avp name="Redirect-Server" code="434" mandatory="must" may-encrypt="yes" protected="may">
+      <grouped>
+        <required>
+          <avprule name="Redirect-Address-Type" maximum="1" minimum="1"/>
+          <avprule name="Redirect-Server-Address" maximum="1" minimum="1"/>
+        </required>
+      </grouped>
+    </avp>
+    <avp name="Redirect-Server-Address" code="435" mandatory="must" may-encrypt="yes" protected="may">
+      <type type-name="UTF8String"/>
+    </avp>
+    <avp name="Restriction-Filter-Rule" code="438" mandatory="must" may-encrypt="yes" protected="may">
+      <type type-name="IPFilterRule"/>
+    </avp>
+    <avp name="Service-Identifier" code="439" mandatory="must" may-encrypt="yes">
+      <type type-name="Unsigned32"/>
+    </avp>
+    <avp name="Service-Parameter-Info" code="440" mandatory="must" may-encrypt="yes">
+      <grouped>
+        <required>
+          <avprule name="Service-Parameter-Type" maximum="1" minimum="1"/>
+          <avprule name="Service-Parameter-Value" maximum="1" minimum="1"/>
+        </required>
+      </grouped>
+    </avp>
+    <avp name="Service-Parameter-Type" code="441" mandatory="must" may-encrypt="yes" protected="may">
+      <type type-name="Unsigned32"/> 
+    </avp>
+    <avp name="Service-Parameter-Value" code="442" mandatory="must" may-encrypt="yes" protected="may">
+      <type type-name="OctetString"/> 
+    </avp>
+    <avp name="Subscription-Id" code="443" mandatory="must" may-encrypt="yes">
+      <grouped>
+        <required>
+          <avprule name="Subscription-Id-Type" maximum="1" minimum="1"/>
+          <avprule name="Subscription-Id-Data" maximum="1" minimum="1"/>
+        </required>
+      </grouped>
+    </avp>
+    <avp name="Subscription-Id-Data" code="444" mandatory="must" may-encrypt="yes">
+      <type type-name="UTF8String"/>
+    </avp>
+    <avp name="Unit-Value" code="445" mandatory="must" may-encrypt="yes">
+      <grouped>
+        <required>
+          <avprule name="Value-Digits" maximum="1" minimum="1"/>
+        </required>
+        <optional>
+          <avprule name="Exponent" maximum="1"/>
+        </optional>
+      </grouped>
+    </avp>
+    <avp name="Gx970-Used-Service-Unit" code="446" mandatory="must" may-encrypt="yes">
+      <grouped>
+        <optional>
+          <avprule name="Tariff-Change-Usage" maximum="1"/>
+          <avprule name="CC-Time" maximum="1"/>
+          <avprule name="CC-Money" maximum="1"/>
+          <avprule name="CC-Total-Octets" maximum="1"/>
+          <avprule name="CC-Input-Octets" maximum="1"/>
+          <avprule name="CC-Output-Octets" maximum="1"/>
+          <avprule name="CC-Service-Specific-Units" maximum="1"/>
+          <avprule name="Reporting-Reason" maximum="1"/>
+          <avprule name="AVP"/>
+        </optional>
+      </grouped>
+    </avp>
+    <avp name="Value-Digits" code="447" mandatory="must" may-encrypt="yes">
+      <type type-name="Integer64"/>
+    </avp>
+    <avp name="Validity-Time" code="448" mandatory="must" may-encrypt="yes">
+      <type type-name="Unsigned32"/>
+    </avp>
+    <avp name="Final-Unit-Action" code="449" mandatory="must" may-encrypt="yes">
+      <type type-name="Enumerated"/>
+        <enum name="TERMINATE" code="0"/>
+        <enum name="REDIRECT" code="1"/>
+        <enum name="RESTRICT_ACCESS" code="2"/>
+    </avp>
+    <avp name="Subscription-Id-Type" code="450" mandatory="must" may-encrypt="yes">
+      <type type-name="Enumerated"/>
+        <enum name="END_USER_E164" code="0"/>
+        <enum name="END_USER_IMSI" code="1"/>
+        <enum name="END_USER_SIP_URI" code="2"/>
+        <enum name="END_USER_NAI" code="3"/>
+        <enum name="END_USER_PRIVATE" code="4"/>
+    </avp>
+    <avp name="Tariff-Time-Change" code="451" mandatory="must" may-encrypt="yes">
+      <type type-name="Unsigned32"/>
+    </avp>
+    <avp name="Tariff-Change-Usage" code="452" mandatory="must" may-encrypt="no">
+      <type type-name="Enumerated"/>
+        <enum name="UNIT_BEFORE_TARIFF_CHANGE" code="0"/>
+        <enum name="UNIT_AFTER_TARIFF_CHANGE" code="1"/>
+        <enum name="UNIT_INDETERMINATE" code="2"/>
+    </avp>
+    <avp name="User-Equipment-Info" code="458" mandatory="must" may-encrypt="yes" protected="may">
+      <grouped>
+        <required>
+          <avprule name="User-Equipment-Info-Type" maximum="1" minimum="1"/>
+          <avprule name="User-Equipment-Info-Value" maximum="1" minimum="1"/>
+        </required>
+      </grouped>
+    </avp>
+    <avp name="User-Equipment-Info-Type" code="459" mandatory="must" may-encrypt="no" protected="may">
+      <type type-name="Enumerated"/>
+        <enum name="IMEISV" code="0"/>
+        <enum name="MAC" code="1"/>
+        <enum name="EUI64" code="2"/>
+        <enum name="MODIFIED_EUI64" code="3"/>
+    </avp>
+    <avp name="User-Equipment-Info-Value" code="460" mandatory="must" may-encrypt="yes" protected="may">
+      <type type-name="OctetString"/>
+    </avp>
+  </application>
+ </dictionary>

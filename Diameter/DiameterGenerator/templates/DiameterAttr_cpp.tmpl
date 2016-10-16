@@ -1,0 +1,33 @@
+
+#include "DiaAttr_%AttrName%.h"
+
+#include "BufferAttr.h"
+
+namespace Diameter {
+namespace Events {
+namespace %Branding% {
+
+DiaAttr_%AttrName%_Ptr makeDiaAttr_%AttrName%() {
+    return std::make_shared<DiaAttr_%AttrName%>();
+}
+
+size_t size(const DiaAttr_%AttrName%_Ptr& val) {
+
+	return 0;
+}
+
+} /* namespace %Branding% */
+} /* namespace Events */
+
+namespace Serialiser {
+
+Events::%Branding%::DiaAttr_%AttrName%_Ptr convertToDiaAttr_%AttrName%(Dictionary::DictionaryDefinition& dictionary, char* buffer, size_t size) {
+    Events::%Branding%::DiaAttr_%AttrName%_Ptr retVal = std::make_shared<Events::%Branding%::DiaAttr_%AttrName%>();
+
+    return retVal; 
+}
+
+
+} /* namespace Serialiser */
+
+} /* namespace Diameter */

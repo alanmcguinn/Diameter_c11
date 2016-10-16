@@ -1,0 +1,35 @@
+#include "%Branding%_Dictionary.h"
+
+#include "CommandEntry.h"
+
+%Includes%
+
+#include "AVP.h"
+#include "Command.h"
+#include "GroupedAVP.h"
+#include "Converters.h"
+
+namespace Diameter {
+namespace Dictionary {
+namespace %Branding% {
+
+DictionaryDefinition makeDictionary() {
+    DictionaryDefinition dictionary;
+
+	using namespace Diameter::Events;
+    using namespace Diameter::Events::%Branding%;
+
+%AVPStringLiterals%
+
+%AVPs%
+
+%GroupedAVPs%
+
+%Commands%
+
+    return dictionary;
+}
+
+} /* namespace %Branding% */
+} /* namespace Events */
+} /* namespace Diameter */

@@ -1,0 +1,43 @@
+#ifndef DIA_%MessageName%_H_
+#define DIA_%MessageName%_H_
+
+#include "DiameterEvent.h"
+#include <string>
+#include <cstdint>
+#include <memory>
+
+%Includes%
+
+namespace Diameter {
+namespace Events {
+namespace %Branding% {
+
+using namespace Diameter::Events::Base;
+
+class Dia_%MessageName% : public Diameter_Event {
+public:
+    Dia_%MessageName%() : Diameter_Event(%ApplicationId%, %CommandCode%, %Request%)%InitialiserList%
+    {};
+    virtual ~Dia_%MessageName%() {};
+
+%AttributeSetters%
+
+%AttributeGetters%
+
+private:
+
+%Attributes%
+};
+
+using Dia_%MessageName%_Ptr = std::shared_ptr<Dia_%MessageName%>;
+
+Dia_%MessageName%_Ptr makeDia_%MessageName%() {
+    return std::make_shared<Dia_%MessageName%>();
+}
+
+} /* namespace %Branding% */
+} /* namespace Events */
+} /* namespace Diameter */
+
+#endif /* DIA_%MessageName%_H_ */
+

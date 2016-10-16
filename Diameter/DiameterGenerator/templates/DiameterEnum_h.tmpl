@@ -1,0 +1,26 @@
+#ifndef DIA_%EnumName%_H_
+#define DIA_%EnumName%_H_
+
+#include "BufferAttr.h"
+#include "Buffer.h"
+
+namespace Diameter {
+namespace Events {
+namespace %Branding% {
+
+enum class DiaEnum_%EnumName% { UNSET = -1, %EnumValues% };
+
+size_t size(DiaEnum_%EnumName%);
+
+} /* namespace %Branding% */
+} /* namespace Events */
+
+namespace Serialiser {
+
+Events::%Branding%::DiaEnum_%EnumName% convertToDiaEnum_%EnumName%(Dictionary::DictionaryDefinition& dictionary, char* buffer, std::uint32_t bufferSize);
+
+} /* namespace Serialiser */
+
+} /* namespace Diameter */
+
+#endif /* DIA_%EnumName%_H_ */

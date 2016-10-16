@@ -1,0 +1,62 @@
+#ifndef DIA_%AttrName%_H_
+#define DIA_%AttrName%_H_
+
+#include <string>
+#include <cstdint>
+#include <vector>
+#include <memory>
+
+#include "DiameterEvent.h"
+#include "Buffer.h"
+#include "traits.h"
+
+%Includes%
+
+namespace Diameter {
+
+namespace Dictionary {
+
+class DictionaryDefinition;
+
+}
+
+namespace Events {
+namespace %Branding% {
+
+class DiaAttr_%AttrName% : public Diameter_Base {
+public:
+    DiaAttr_%AttrName%() : m_dummy(0)%InitialiserList%
+    {};
+    virtual ~DiaAttr_%AttrName%() {};
+
+%AttributeSetters%
+
+%AttributeGetters%
+
+private:
+
+    int m_dummy;
+%Attributes%
+};
+
+using DiaAttr_%AttrName%_Ptr = std::shared_ptr<DiaAttr_%AttrName%>;
+
+DiaAttr_%AttrName%_Ptr makeDiaAttr_%AttrName%();
+size_t size(const DiaAttr_%AttrName%_Ptr& val);
+
+} /* namespace %Branding% */
+
+template <>
+struct is_diameter_base_shared_ptr<%Branding%::DiaAttr_%AttrName%_Ptr> : public std::true_type {};
+
+} /* namespace Events */
+
+namespace Serialiser {
+
+Events::%Branding%::DiaAttr_%AttrName%_Ptr convertToDiaAttr_%AttrName%(Dictionary::DictionaryDefinition& dictionary, char* buffer, size_t size);
+
+} /* namespace Serialiser */
+
+} /* namespace Diameter */
+
+#endif /* DIA_%AttrName%_H_ */
