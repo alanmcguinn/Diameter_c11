@@ -66,6 +66,7 @@ size_t pad(size_t inputSize);
 
 template <typename T, typename std::enable_if<std::is_same<T, std::string>::value, int>::type = 0>
 size_t size(const T& str) {
+    std::cout << "String size is " << str.size() << ", padded is " << pad(str.size()) << std::endl;
     return pad(str.size());
 }
 
@@ -86,10 +87,12 @@ size_t addToBuffer(Serialiser::Buffer& buffer, Dictionary::DictionaryDefinition&
         std::uint32_t avpCode, std::uint32_t vendorId, const T& i) {
     using Serialiser::internal::AVP;
     size_t avpLength = avpSize(vendorId, size(i));
+    std::cout << "AVP Length = " << avpLength << std::endl;
     AVP* avp = buffer.reserve<AVP>(avpLength);
     avp->m_tag = htonl(avpCode);
     int offset = avp->setVendorId(vendorId);
-    avp->m_length = avpLength;
+    std::cout<< "AVP Length for code " << avpCode << " = " << avpLength << ":" << htonl(avpLength) << std::endl;
+    avp->setFlagsLength(0, avpLength);
     doCopy(avp, i, offset);
 
     return avpLength;
@@ -102,11 +105,11 @@ size_t addToBuffer(Serialiser::Buffer& buffer, Dictionary::DictionaryDefinition&
 
     AVP* avp = buffer.reserve<AVP>(avpSize(vendorId, sizeof(std::uint32_t)));
 
-    std::uint32_t enumVal = htonl(std::uint32_t(val));
+    std::uint32_t enumVal = std::uint32_t(val);
     
-    size_t avpLength = sizeof(AVP) + sizeof(std::uint32_t);
+    size_t avpLength = avpSize(vendorId, size(val));
     avp->m_tag = htonl(code);
-    avp->m_length = avpLength;
+    avp->setFlagsLength(0, avpLength);
 
     int offset = avp->setVendorId(vendorId);
 

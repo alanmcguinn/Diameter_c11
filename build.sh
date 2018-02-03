@@ -6,8 +6,8 @@ Tests"
 
 ROOT=`pwd`
 
-export CC=/usr/bin/gcc-5
-export CXX=/usr/bin/g++-5
+#export CC=/usr/bin/gcc-5
+#export CXX=/usr/bin/g++-5
 
 clean() {
 	for build_dir in ${BUILD_DIRS}; do

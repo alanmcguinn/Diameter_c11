@@ -28,6 +28,9 @@ int main() {
     msg->set_Origin_Realm("testrealm.openet.com");
     msg->set_Gx970_RAT_Type(DiaEnum_Gx970_RAT_Type::E_GAN);
 
+    msg->getHeader()->setHopByHopIdentifier(0xdeaddead);
+    msg->getHeader()->setEndToEndIdentifier(0xbeefbeef);
+
     DiaAttr_Subscription_Id_Ptr subscriptionId = makeDiaAttr_Subscription_Id();
 
     subscriptionId->set_Subscription_Id_Type(DiaEnum_Subscription_Id_Type::E_END_USER_IMSI);

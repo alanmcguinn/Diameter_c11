@@ -50,7 +50,7 @@ size_t addToBuffer(Serialiser::Buffer& buffer, Dictionary::DictionaryDefinition&
         sz += commandEntry->serialise(val, buffer, dictionary);
     });
 
-    avp->m_length = sz;
+    avp->setFlagsLength(0, sz);
     return sz;
 }
 

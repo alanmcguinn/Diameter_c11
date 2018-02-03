@@ -16,35 +16,33 @@ namespace Diameter {
 namespace Serialiser {
 namespace internal {
 
+#define VBIT_MASK 0x80
+
 struct AVP {
     std::uint32_t m_tag;
-    union {
-        struct {
-            std::uint32_t m_vBit:1;
-            std::uint32_t m_mBit:1;
-            std::uint32_t m_pBit:1;
-            std::uint32_t :5;
-            std::uint32_t m_length:24;
-        };
-        std::uint32_t m_flagsLength;
-    };
+    std::uint32_t m_flagsLength;
     char m_value[0];
 
-//    void setFlagsLength(std::uint8_t flags, std::uint32_t length) {
-//		setField(m_flagsLength, flags, length);
- //   }
+    void setFlagsLength(std::uint8_t flags, std::uint32_t length) {
+        setField(m_flagsLength, flags, length);
+    }
 
     std::uint32_t setVendorId(std::uint32_t vendorId) {
         if (vendorId > 0) {
-            m_vBit = 1;
-            std::memcpy(m_value, &vendorId, sizeof(std::uint32_t));
+            setFlagsLength(getFlags() | VBIT_MASK, getLength());
+            uint32_t otwVendorId = htonl(vendorId);
+            std::memcpy(m_value, &otwVendorId, sizeof(std::uint32_t));
             return sizeof(std::uint32_t);
         }
         return 0;
     }
 
-    std::uint32_t getLength() {
-		return m_length;
+    std::uint32_t getLength() const {
+        return getLower24Bytes(m_flagsLength);
+    }
+
+    std::uint8_t getFlags() const {
+        return getUpperByte(m_flagsLength);
     }
 
     std::uint32_t getCommandCode() {
