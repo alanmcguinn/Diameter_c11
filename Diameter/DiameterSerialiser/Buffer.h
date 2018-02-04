@@ -18,6 +18,10 @@ namespace Serialiser {
 
 class Buffer {
 public:
+
+    using BufferSptr = std::shared_ptr<Buffer>;
+
+    Buffer();
     explicit Buffer(size_t initialSize);
 
     Buffer(Buffer&& copy);
@@ -41,7 +45,6 @@ public:
 
     template <typename T>
     T* get(size_t size) {
-//        std::cout << "Current Write is " << (void*)m_currentWrite << ", Current Read is " << (void*)m_currentRead << ", Requested size is " << size << std::endl;
         if (size > (m_currentWrite - m_currentRead)) {
             return nullptr;
         }
@@ -57,13 +60,19 @@ public:
 
     void reset();
 
+    size_t capacity() {
+        return m_capacity;
+    }
+
+    boost::shared_array<unsigned char> buffer();
+
 private:
 
     void resize(size_t size);
 
     boost::shared_array<unsigned char> m_buffer;
 
-    size_t m_initialSize;
+    size_t m_capacity;
     size_t m_size;
     size_t m_numBytesLeft;
     unsigned char* m_currentWrite;

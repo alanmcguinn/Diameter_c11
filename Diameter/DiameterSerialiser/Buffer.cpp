@@ -15,24 +15,26 @@ namespace Diameter {
 namespace Serialiser {
 
 
-Buffer::Buffer(size_t initialSize) : m_buffer {new unsigned char[initialSize]}, m_initialSize {initialSize},
+Buffer::Buffer : Buffer(1024) {};
+
+Buffer::Buffer(size_t initialSize) : m_buffer {new unsigned char[initialSize]}, m_capacity {initialSize},
         m_size {0}, m_numBytesLeft {initialSize}, m_currentWrite {m_buffer.get()}, m_currentRead {m_buffer.get()} {
 }
 
-Buffer::Buffer(Buffer&& copy) : m_buffer {std::move(copy.m_buffer)}, m_initialSize {std::move(copy.m_initialSize)},
+Buffer::Buffer(Buffer&& copy) : m_buffer {std::move(copy.m_buffer)}, m_capacity {std::move(copy.m_capacity)},
         m_size {std::move(copy.m_size)}, m_numBytesLeft {std::move(copy.m_numBytesLeft)},
         m_currentWrite {std::move(copy.m_currentWrite)}, m_currentRead {std::move(copy.m_currentRead)} {
 }
 
 void Buffer::reset() {
 	m_currentWrite = m_buffer.get();
-	m_numBytesLeft = m_initialSize;
+	m_numBytesLeft = m_capacity;
 	m_size = 0;
 }
 
 Buffer& Buffer::operator=(Buffer&& rhs) {
     m_buffer = std::move(rhs.m_buffer);
-    m_initialSize = std::move(rhs.m_initialSize);
+    m_capacity = std::move(rhs.m_capacity);
     m_size = std::move(rhs.m_size);
     m_numBytesLeft = std::move(rhs.m_numBytesLeft);
     m_currentWrite = std::move(rhs.m_currentWrite);
@@ -44,10 +46,10 @@ Buffer& Buffer::operator=(Buffer&& rhs) {
 void Buffer::resize(size_t size) {
     if (m_numBytesLeft < size) {
         // We need a resize
-        size_t resizeSize = std::max(m_size + m_numBytesLeft + m_initialSize,
+        size_t resizeSize = std::max(m_size + m_numBytesLeft + m_capacity,
                 m_size + m_numBytesLeft + size);
         boost::shared_array<unsigned char> tmp(new unsigned char[resizeSize]);
-        m_numBytesLeft += std::max(m_initialSize, size);
+        m_numBytesLeft += std::max(m_capacity, size);
 
         // Perform the copy
         for (size_t i = 0; i < m_size; ++i) {
@@ -57,7 +59,12 @@ void Buffer::resize(size_t size) {
         m_currentWrite = &tmp[m_size];
 
         m_buffer = tmp;
+        m_capacity = resizeSize;
     }
+}
+
+boost::shared_array<unsigned char> Buffer::buffer() {
+    return m_buffer;
 }
 
 std::ostream& operator<<(std::ostream& os, Buffer& buffer) {

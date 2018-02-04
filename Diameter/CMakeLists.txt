@@ -21,6 +21,7 @@ add_subdirectory(Diameter_Events)
 add_subdirectory(DiameterSerialiser)
 add_subdirectory(DiameterDictionary)
 add_subdirectory(DiameterGenerator)
+add_subdirectory(DiameterNet)
 
 #add_subdirectory(Gx970Dictionary_gen)
 
